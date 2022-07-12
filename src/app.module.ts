@@ -2,6 +2,11 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { StudentsModule } from './students/students.module';
+import { TeachersModule } from './teachers/teachers.module';
+import { TutorsModule } from './tutors/tutors.module';
+import { ReportsModule } from './reports/reports.module';
+import { NotesModule } from './notes/notes.module';
 
 @Module({
   imports: [
@@ -14,7 +19,13 @@ import { AppService } from './app.service';
       database: 'db_school',
       entities: [],
       synchronize: true,
+      autoLoadEntities: true,
     }),
+    StudentsModule,
+    TeachersModule,
+    TutorsModule,
+    ReportsModule,
+    NotesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
