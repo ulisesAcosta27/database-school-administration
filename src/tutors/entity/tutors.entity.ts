@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { User } from '../../users/entity/users.entity';
+import { Students } from '../../students/entity/students.entity';
 
 @Entity()
 export class Tutors {
@@ -16,4 +24,10 @@ export class Tutors {
 
   @Column()
   address: string;
+
+  @OneToOne(() => User, (user) => user.tutors)
+  user: User;
+
+  @OneToMany(() => Students, (students) => students.tutors)
+  students: Students[];
 }
