@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { TutorsService } from './tutors.service';
 import { TutorsDTO } from './dto/tutors.dto';
 
@@ -19,5 +19,10 @@ export class TutorsController {
   @Post()
   create(@Body() tutorsDTO: TutorsDTO) {
     return this.tutorsService.create(tutorsDTO);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id: number) {
+    return this.tutorsService.delete(id);
   }
 }

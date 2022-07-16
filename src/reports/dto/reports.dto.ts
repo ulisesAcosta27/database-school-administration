@@ -6,7 +6,5 @@ export class ReportsDTO {
   @IsNotEmpty()
   readonly sanctions: string;
 
-  @IsString()
-  @IsNotEmpty()
   readonly create_at: Date;
 }
