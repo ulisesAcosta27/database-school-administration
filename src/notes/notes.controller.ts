@@ -16,9 +16,13 @@ export class NotesController {
     return this.notesService.findOne(id);
   }
 
-  @Post()
-  create(@Body() notesDTO: NotesDTO) {
-    return this.notesService.create(notesDTO);
+  @Post('student/:idStudent/subject/:idSubject')
+  create(
+    @Body() notesDTO: NotesDTO,
+    @Param('idStudent') idStudent: number,
+    @Param('idSubject') idSubject: number,
+  ) {
+    return this.notesService.create(idStudent, idSubject, notesDTO);
   }
 
   @Delete(':id')

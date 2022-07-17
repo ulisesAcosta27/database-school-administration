@@ -13,15 +13,23 @@ export class SubjectsService {
   ) {}
 
   async findAll(): Promise<ISubjects[]> {
-    return await this.SubjectsRepository.find();
+    return await this.SubjectsRepository.find({
+      relations: { teachers: true },
+    });
   }
 
   async findOne(id: number): Promise<ISubjects> {
     return await this.SubjectsRepository.findOne({ where: { id } });
   }
 
-  async create(subjectsDTO: SubjectsDTO): Promise<ISubjects> {
+  async create(
+    subjectsDTO: SubjectsDTO,
+    idTeacher: any,
+    schoolYear: any,
+  ): Promise<ISubjects> {
     const createNewSubjects = this.SubjectsRepository.create(subjectsDTO);
+    createNewSubjects.teachers = idTeacher;
+    createNewSubjects.schoolYear = schoolYear;
     return await this.SubjectsRepository.save(createNewSubjects);
   }
 

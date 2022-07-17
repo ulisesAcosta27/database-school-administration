@@ -1,6 +1,13 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { SchoolYear } from '../../school-year/entity/school-year.entity';
 import { Teachers } from '../../teachers/entity/teachers.entity';
+import { Notes } from '../../notes/entity/notes.intity';
 
 @Entity()
 export class Subjects {
@@ -18,4 +25,7 @@ export class Subjects {
 
   @ManyToOne(() => Teachers, (teachers) => teachers.subjects)
   teachers: Teachers;
+
+  @OneToMany(() => Notes, (notes) => notes.subjects)
+  notes: Notes;
 }

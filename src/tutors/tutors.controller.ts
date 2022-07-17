@@ -16,9 +16,9 @@ export class TutorsController {
     return this.tutorsService.findOne(id);
   }
 
-  @Post()
-  create(@Body() tutorsDTO: TutorsDTO) {
-    return this.tutorsService.create(tutorsDTO);
+  @Post('user/:idUser')
+  create(@Body() tutorsDTO: TutorsDTO, @Param('idUser') idUser: number) {
+    return this.tutorsService.create(tutorsDTO, idUser);
   }
 
   @Delete(':id')

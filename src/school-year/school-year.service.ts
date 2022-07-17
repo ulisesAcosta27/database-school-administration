@@ -13,15 +13,21 @@ export class SchoolYearService {
   ) {}
 
   async findAll(): Promise<ISchoolYear[]> {
-    return await this.schoolYearRepository.find();
+    return await this.schoolYearRepository.find({
+      relations: { students: true },
+    });
   }
 
   async findOne(id: number): Promise<ISchoolYear> {
     return await this.schoolYearRepository.findOne({ where: { id } });
   }
 
-  async create(schoolYearDTO: SchoolYearDTO): Promise<ISchoolYear> {
+  async create(
+    schoolYearDTO: SchoolYearDTO,
+    idStudent: any,
+  ): Promise<ISchoolYear> {
     const createNewSchoolYear = this.schoolYearRepository.create(schoolYearDTO);
+    createNewSchoolYear.students = idStudent;
     return await this.schoolYearRepository.save(createNewSchoolYear);
   }
 

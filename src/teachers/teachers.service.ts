@@ -20,8 +20,9 @@ export class TeachersService {
     return this.teachersRepository.findOne({ where: { id } });
   }
 
-  async create(teachersDTO: TeachersDTO): Promise<ITeachers> {
+  async create(idUser: any, teachersDTO: TeachersDTO): Promise<ITeachers> {
     const createNewTeacher = this.teachersRepository.create(teachersDTO);
+    createNewTeacher.user = idUser;
     return this.teachersRepository.save(createNewTeacher);
   }
 

@@ -16,9 +16,13 @@ export class SubjectsController {
     return this.subjectsService.findOne(id);
   }
 
-  @Post()
-  create(@Body() subjectsDTO: SubjectsDTO) {
-    return this.subjectsService.create(subjectsDTO);
+  @Post('/teacher/:idTeacher/schoolYear/:schoolYear')
+  create(
+    @Body() subjectsDTO: SubjectsDTO,
+    @Param('idTeacher') idTeacher: number,
+    @Param('schoolYear') schoolYear: number,
+  ) {
+    return this.subjectsService.create(subjectsDTO, idTeacher, schoolYear);
   }
 
   @Delete(':id')

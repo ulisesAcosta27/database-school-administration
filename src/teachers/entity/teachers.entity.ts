@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -27,6 +28,7 @@ export class Teachers {
   address: string;
 
   @OneToOne(() => User, (user) => user.teachers)
+  @JoinColumn()
   user: User;
 
   @OneToMany(() => Reports, (reports) => reports.teachers)

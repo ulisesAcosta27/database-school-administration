@@ -13,15 +13,23 @@ export class ReportsService {
   ) {}
 
   async findAll(): Promise<IReports[]> {
-    return await this.ReportsRepository.find();
+    return await this.ReportsRepository.find({
+      relations: { teachers: true, students: true },
+    });
   }
 
   async findOne(id: number): Promise<IReports> {
     return await this.ReportsRepository.findOne({ where: { id } });
   }
 
-  async create(reportsDTO: ReportsDTO): Promise<IReports> {
+  async create(
+    idTeacher: any,
+    idStudent: any,
+    reportsDTO: ReportsDTO,
+  ): Promise<IReports> {
     const createNewReport = this.ReportsRepository.create(reportsDTO);
+    createNewReport.teachers = idTeacher;
+    createNewReport.students = idStudent;
     return await this.ReportsRepository.save(createNewReport);
   }
 

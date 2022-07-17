@@ -16,9 +16,13 @@ export class ReportsController {
     return this.reportsService.findOne(id);
   }
 
-  @Post()
-  create(@Body() reportsDTO: ReportsDTO) {
-    return this.reportsService.create(reportsDTO);
+  @Post('teacher/:idTeacher/student/:idStudent')
+  create(
+    @Body() reportsDTO: ReportsDTO,
+    @Param('idTeacher') idTeacher: number,
+    @Param('idStudent') idStudent: number,
+  ) {
+    return this.reportsService.create(idTeacher, idStudent, reportsDTO);
   }
 
   @Delete(':id')

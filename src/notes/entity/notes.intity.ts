@@ -1,4 +1,5 @@
 import { Students } from '../../students/entity/students.entity';
+import { Subjects } from '../../subjects/entity/subjects.entity';
 import {
   Column,
   CreateDateColumn,
@@ -20,4 +21,7 @@ export class Notes {
 
   @ManyToOne(() => Students, (students) => students.notes)
   students: Students;
+
+  @ManyToOne(() => Subjects, (subjects) => subjects.notes)
+  subjects: Subjects;
 }

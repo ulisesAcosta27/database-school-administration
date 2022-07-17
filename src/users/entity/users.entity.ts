@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Students } from '../../students/entity/students.entity';
 import { Tutors } from '../../tutors/entity/tutors.entity';
 import { Teachers } from '../../teachers/entity/teachers.entity';
@@ -24,15 +18,12 @@ export class User {
   @Column()
   role: string;
 
-  @OneToOne(() => Students, (students) => students.user)
-  @JoinColumn()
-  students: Students;
-
   @OneToOne(() => Tutors, (tutors) => tutors.user)
-  @JoinColumn()
   tutors: Tutors;
 
+  @OneToOne(() => Students, (students) => students.user)
+  students: Students;
+
   @OneToOne(() => Teachers, (teachers) => teachers.user)
-  @JoinColumn()
   teachers: Teachers;
 }

@@ -13,15 +13,16 @@ export class TutorsService {
   ) {}
 
   async findAll(): Promise<ITutors[]> {
-    return await this.tutorsRespository.find();
+    return await this.tutorsRespository.find({ relations: { user: true } });
   }
 
   async findOne(id: number): Promise<ITutors> {
     return await this.tutorsRespository.findOne({ where: { id } });
   }
 
-  async create(tutorsDTO: TutorsDTO): Promise<ITutors> {
+  async create(tutorsDTO: TutorsDTO, idUser: any) {
     const createNewTutor = this.tutorsRespository.create(tutorsDTO);
+    createNewTutor.user = idUser;
     return await this.tutorsRespository.save(createNewTutor);
   }
 

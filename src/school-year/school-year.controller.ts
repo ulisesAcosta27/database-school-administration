@@ -16,9 +16,12 @@ export class SchoolYearController {
     return this.schoolYearService.findOne(id);
   }
 
-  @Post()
-  create(@Body() schoolYearDTO: SchoolYearDTO) {
-    return this.schoolYearService.create(schoolYearDTO);
+  @Post('student/:idStudent')
+  create(
+    @Body() schoolYearDTO: SchoolYearDTO,
+    @Param('idStudent') idStudent: number,
+  ) {
+    return this.schoolYearService.create(schoolYearDTO, idStudent);
   }
 
   @Delete(':id')

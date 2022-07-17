@@ -5,6 +5,7 @@ import {
   OneToOne,
   ManyToOne,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import { User } from '../../users/entity/users.entity';
 import { Tutors } from '../../tutors/entity/tutors.entity';
@@ -21,6 +22,7 @@ export class Students {
   created_at: Date;
 
   @OneToOne(() => User, (user) => user.students)
+  @JoinColumn()
   user: User;
 
   @ManyToOne(() => Tutors, (tutors) => tutors.students)
