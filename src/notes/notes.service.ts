@@ -13,19 +13,19 @@ export class NotesService {
   ) {}
 
   async findAll(): Promise<INotes[]> {
-    return this.notesRepository.find();
+    return await this.notesRepository.find();
   }
 
   async findOne(id: number): Promise<INotes> {
-    return this.notesRepository.findOne({ where: { id } });
+    return await this.notesRepository.findOne({ where: { id } });
   }
 
   async create(notesDTO: NotesDTO): Promise<INotes> {
     const createNewNote = this.notesRepository.create(notesDTO);
-    return this.notesRepository.save(createNewNote);
+    return await this.notesRepository.save(createNewNote);
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    return this.notesRepository.delete(id);
+    return await this.notesRepository.delete(id);
   }
 }

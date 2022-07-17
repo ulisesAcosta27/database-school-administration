@@ -26,6 +26,6 @@ export class SubjectsService {
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    return this.SubjectsRepository.delete(id);
+    return await this.SubjectsRepository.delete(id);
   }
 }

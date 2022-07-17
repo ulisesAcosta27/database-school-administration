@@ -13,19 +13,19 @@ export class TutorsService {
   ) {}
 
   async findAll(): Promise<ITutors[]> {
-    return this.tutorsRespository.find();
+    return await this.tutorsRespository.find();
   }
 
   async findOne(id: number): Promise<ITutors> {
-    return this.tutorsRespository.findOne({ where: { id } });
+    return await this.tutorsRespository.findOne({ where: { id } });
   }
 
   async create(tutorsDTO: TutorsDTO): Promise<ITutors> {
     const createNewTutor = this.tutorsRespository.create(tutorsDTO);
-    return this.tutorsRespository.save(createNewTutor);
+    return await this.tutorsRespository.save(createNewTutor);
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    return this.tutorsRespository.delete(id);
+    return await this.tutorsRespository.delete(id);
   }
 }

@@ -26,10 +26,10 @@ export class UsersService {
   }
 
   async update(id: number, userDTO: UserDTO) {
-    return this.userRepository.update(id, userDTO);
+    return await this.userRepository.update(id, userDTO);
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    return this.userRepository.delete(id);
+    return await this.userRepository.delete(id);
   }
 }

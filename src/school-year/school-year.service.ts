@@ -13,19 +13,19 @@ export class SchoolYearService {
   ) {}
 
   async findAll(): Promise<ISchoolYear[]> {
-    return this.schoolYearRepository.find();
+    return await this.schoolYearRepository.find();
   }
 
   async findOne(id: number): Promise<ISchoolYear> {
-    return this.schoolYearRepository.findOne({ where: { id } });
+    return await this.schoolYearRepository.findOne({ where: { id } });
   }
 
   async create(schoolYearDTO: SchoolYearDTO): Promise<ISchoolYear> {
     const createNewSchoolYear = this.schoolYearRepository.create(schoolYearDTO);
-    return this.schoolYearRepository.save(createNewSchoolYear);
+    return await this.schoolYearRepository.save(createNewSchoolYear);
   }
 
   async delete(id: number): Promise<DeleteResult> {
-    return this.schoolYearRepository.delete(id);
+    return await this.schoolYearRepository.delete(id);
   }
 }
