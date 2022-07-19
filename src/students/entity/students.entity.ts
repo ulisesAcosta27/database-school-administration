@@ -5,13 +5,15 @@ import {
   OneToOne,
   ManyToOne,
   OneToMany,
+  ManyToMany,
+  JoinTable,
   JoinColumn,
 } from 'typeorm';
 import { User } from '../../users/entity/users.entity';
 import { Tutors } from '../../tutors/entity/tutors.entity';
 import { Reports } from '../../reports/entity/reports.intity';
 import { Notes } from '../../notes/entity/notes.intity';
-import { SchoolYear } from '../../school-year/entity/school-year.entity';
+import { Subjects } from '../../subjects/entity/subjects.entity';
 
 @Entity()
 export class Students {
@@ -34,6 +36,7 @@ export class Students {
   @OneToMany(() => Notes, (notes) => notes.students)
   notes: Notes[];
 
-  @OneToMany(() => SchoolYear, (schoolYear) => schoolYear.students)
-  schoolYear: SchoolYear[];
+  @ManyToMany(() => Subjects, (subjects) => subjects.students)
+  @JoinTable()
+  subjects: Subjects[];
 }

@@ -9,7 +9,7 @@ import { ReportsModule } from './reports/reports.module';
 import { NotesModule } from './notes/notes.module';
 import { UsersModule } from './users/users.module';
 import { SubjectsModule } from './subjects/subjects.module';
-import { SchoolYearModule } from './school-year/school-year.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -31,7 +31,7 @@ import { SchoolYearModule } from './school-year/school-year.module';
     NotesModule,
     UsersModule,
     SubjectsModule,
-    SchoolYearModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

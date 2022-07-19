@@ -1,7 +1,17 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { SubjectsService } from './subjects.service';
 import { SubjectsDTO } from './dto/subjects.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
+@UseGuards(JwtAuthGuard)
 @Controller('subjects')
 export class SubjectsController {
   constructor(private readonly subjectsService: SubjectsService) {}
@@ -16,13 +26,12 @@ export class SubjectsController {
     return this.subjectsService.findOne(id);
   }
 
-  @Post('/teacher/:idTeacher/schoolYear/:schoolYear')
+  @Post('/teacher/:idTeacher/')
   create(
     @Body() subjectsDTO: SubjectsDTO,
     @Param('idTeacher') idTeacher: number,
-    @Param('schoolYear') schoolYear: number,
   ) {
-    return this.subjectsService.create(subjectsDTO, idTeacher, schoolYear);
+    return this.subjectsService.create(subjectsDTO, idTeacher);
   }
 
   @Delete(':id')

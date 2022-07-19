@@ -24,6 +24,11 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
+  @Get('name/:name')
+  findOneByName(@Param('name') name: string) {
+    return this.usersService.findOneByName(name);
+  }
+
   @Post()
   create(@Body() userDTO: UserDTO) {
     return this.usersService.create(userDTO);

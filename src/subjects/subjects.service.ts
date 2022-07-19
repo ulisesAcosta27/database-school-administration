@@ -22,14 +22,9 @@ export class SubjectsService {
     return await this.SubjectsRepository.findOne({ where: { id } });
   }
 
-  async create(
-    subjectsDTO: SubjectsDTO,
-    idTeacher: any,
-    schoolYear: any,
-  ): Promise<ISubjects> {
+  async create(subjectsDTO: SubjectsDTO, idTeacher: any): Promise<ISubjects> {
     const createNewSubjects = this.SubjectsRepository.create(subjectsDTO);
     createNewSubjects.teachers = idTeacher;
-    createNewSubjects.schoolYear = schoolYear;
     return await this.SubjectsRepository.save(createNewSubjects);
   }
 
