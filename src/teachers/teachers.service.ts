@@ -13,7 +13,9 @@ export class TeachersService {
   ) {}
 
   async findAll(): Promise<ITeachers[]> {
-    return this.teachersRepository.find();
+    return this.teachersRepository.find({
+      relations: { user: true, subjects: true },
+    });
   }
 
   async findOne(id: number): Promise<ITeachers> {

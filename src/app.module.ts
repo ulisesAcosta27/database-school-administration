@@ -9,14 +9,13 @@ import { ReportsModule } from './reports/reports.module';
 import { NotesModule } from './notes/notes.module';
 import { UsersModule } from './users/users.module';
 import { SubjectsModule } from './subjects/subjects.module';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 5432,
+      port: 5433,
       username: 'postgres',
       password: 'charango',
       database: 'db_school',
@@ -31,7 +30,6 @@ import { AuthModule } from './auth/auth.module';
     NotesModule,
     UsersModule,
     SubjectsModule,
-    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

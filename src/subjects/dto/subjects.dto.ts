@@ -16,4 +16,5 @@ export class SubjectsDTO {
   @IsString()
   @IsEnum(['A', 'B', 'C', 'D', 'E', 'F'])
   readonly grade: string;
+  readonly studentIds?: any[];
 }

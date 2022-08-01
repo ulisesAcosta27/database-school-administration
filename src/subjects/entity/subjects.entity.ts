@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinTable,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -28,5 +29,14 @@ export class Subjects {
   notes: Notes;
 
   @ManyToMany(() => Students, (students) => students.subjects)
+  @JoinTable({
+    name: 'students_subjects',
+    joinColumn: {
+      name: 'students_id',
+    },
+    inverseJoinColumn: {
+      name: 'subjects_id',
+    },
+  })
   students: Students[];
 }

@@ -3,4 +3,5 @@ export interface ISubjects {
   type: string;
   course: string;
   grade: string;
+  studentIds?: any[];
 }

@@ -20,7 +20,6 @@ export class UsersService {
   async findAll(): Promise<IUser[]> {
     return await this.userRepository.find({
       relations: {
-        students: true,
         tutors: true,
         teachers: true,
       },
@@ -31,13 +30,16 @@ export class UsersService {
     return await this.userRepository.findOne({
       where: { id },
       relations: {
-        students: true,
         tutors: true,
         teachers: true,
       },
     });
   }
   //Nuevo
+  async findOneByEmail(email: string) {
+    return await this.userRepository.findOne({ where: { email } });
+  }
+
   async findOneByName(name: string): Promise<IUser> {
     return await this.userRepository.findOne({
       where: { name },

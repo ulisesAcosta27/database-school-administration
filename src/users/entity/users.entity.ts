@@ -1,7 +1,12 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Students } from '../../students/entity/students.entity';
 import { Tutors } from '../../tutors/entity/tutors.entity';
 import { Teachers } from '../../teachers/entity/teachers.entity';
+
+export enum UserRole {
+  Admin = 'ADMIN',
+  Client = 'CLIENT',
+  Seller = 'SELLER',
+}
 
 @Entity()
 export class User {
@@ -15,14 +20,11 @@ export class User {
   email: string;
   @Column()
   password: string;
-  @Column()
-  role: string;
+  @Column({ enum: UserRole, default: UserRole.Client })
+  role: UserRole;
 
   @OneToOne(() => Tutors, (tutors) => tutors.user)
   tutors: Tutors;
-
-  @OneToOne(() => Students, (students) => students.user)
-  students: Students;
 
   @OneToOne(() => Teachers, (teachers) => teachers.user)
   teachers: Teachers;

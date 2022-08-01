@@ -1,4 +1,7 @@
 export interface IStudent {
   id?: number;
-  readonly created_at: Date;
+  name: string;
+  last_name: string;
+  email: string;
+  created_at: Date;
 }

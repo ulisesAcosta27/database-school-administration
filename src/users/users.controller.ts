@@ -23,6 +23,11 @@ export class UsersController {
   findOne(@Param('id') id: number) {
     return this.usersService.findOne(id);
   }
+  //Nuevo
+  @Get('name/:email')
+  findOneByEmail(@Param('email') email: string) {
+    return this.usersService.findOneByEmail(email);
+  }
 
   @Get('name/:name')
   findOneByName(@Param('name') name: string) {
