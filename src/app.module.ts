@@ -9,6 +9,7 @@ import { ReportsModule } from './reports/reports.module';
 import { NotesModule } from './notes/notes.module';
 import { UsersModule } from './users/users.module';
 import { SubjectsModule } from './subjects/subjects.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { SubjectsModule } from './subjects/subjects.module';
     NotesModule,
     UsersModule,
     SubjectsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

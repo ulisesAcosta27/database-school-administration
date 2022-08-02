@@ -2,26 +2,25 @@ import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Tutors } from '../../tutors/entity/tutors.entity';
 import { Teachers } from '../../teachers/entity/teachers.entity';
 
-export enum UserRole {
-  Admin = 'ADMIN',
-  Client = 'CLIENT',
-  Seller = 'SELLER',
-}
-
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
   @Column()
   name: string;
   @Column()
   last_name: string;
-  @Column()
+  @Column({
+    unique: true,
+  })
   email: string;
   @Column()
   password: string;
-  @Column({ enum: UserRole, default: UserRole.Client })
-  role: UserRole;
+  @Column('text', {
+    array: true,
+    default: ['user'],
+  })
+  roles: string[];
 
   @OneToOne(() => Tutors, (tutors) => tutors.user)
   tutors: Tutors;

@@ -1,8 +1,7 @@
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { UserRole } from '../entity/users.entity';
+import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 export class UserDTO {
-  readonly id?: number;
+  readonly id?: string;
 
   @IsNotEmpty()
   @IsString()
@@ -20,9 +19,7 @@ export class UserDTO {
   @IsString()
   readonly password: string;
 
-  @IsNotEmpty()
-  @IsString()
-  @IsOptional()
-  @IsEnum(['admin', 'student', 'teacher', 'tutor', 'preceptor', 'director'])
-  readonly role: UserRole;
+  @IsArray()
+  //['admin', 'student', 'teacher', 'tutor', 'preceptor', 'director']
+  readonly roles: string[];
 }

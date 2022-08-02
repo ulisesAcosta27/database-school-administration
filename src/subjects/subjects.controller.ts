@@ -1,12 +1,15 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { SubjectsService } from './subjects.service';
 import { SubjectsDTO } from './dto/subjects.dto';
+import { Auth } from 'src/auth/decorators/auth.decorathor';
+import { ValidRoles } from 'src/auth/interface/valid-roles.interface';
 
 @Controller('subjects')
 export class SubjectsController {
   constructor(private readonly subjectsService: SubjectsService) {}
 
   @Get()
+  @Auth(ValidRoles.teacher)
   findAll() {
     return this.subjectsService.findAll();
   }
